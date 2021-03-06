@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.devbox.adadmin.mapper.AdMapper">
+
+    <select id="adGetOne" parameterType="String" resultType="Ad">
+        SELECT
+          aid,
+          mid,
+          title,
+          description,
+          banner_size,
+          banner_url,
+          platform_type,
+          impression_tracking_url,
+          redirect_url,
+          reg_date
+
+        FROM ad WHERE aid=#{aid}
+    </select>
+    <select id="adList" parameterType="ListParam" resultType="Ad">
+        SELECT
+            aid,
+            mid,
+            title,
+            description,
+            banner_size,
+            banner_url,
+            platform_type,
+            impression_tracking_url,
+            redirect_url,
+            reg_date
+        FROM ad
+
+        <if test="sort == null  " >
+            ORDER BY aid DESC
+        </if>
+        <if test="sort != null" >
+            <if test="order != null  " >
+                ORDER BY ${sort} ${order}
+            </if>
+        </if>
+        <if test="offset != null and limit != null" >
+            LIMIT #{offset} , #{limit}
+        </if>
+    </select>
+    <select id="adCount" parameterType="ListParam" resultType="Integer">
+        SELECT count(aid) FROM ad
+        ORDER BY EID DESC
+    </select>
+    <insert id="adCreate" parameterType="Ad" useGeneratedKeys="true"  keyProperty="aid">
+        INSERT INTO
+            ad (
+                aid,
+                mid,
+                title,
+                description,
+                banner_size,
+                banner_url,
+                platform_type,
+                impression_tracking_url,
+                redirect_url
+            )
+        VALUES
+            (
+                #{aid},
+                #{mid},
+                #{title},
+                #{description},
+                #{banner_size},
+                #{banner_url},
+                #{platform_type},
+                #{impression_tracking_url},
+                #{redirect_url}
+            )
+    </insert>
+    <delete id="adDelete" parameterType="String">
+          DELETE FROM ad WHERE aid = #{aid}
+    </delete>
+    <update id="adUpdate" parameterType="Ad">
+        UPDATE ad
+        <trim prefix="SET" suffixOverrides=",">
+
+            <if test="title != null" >
+                title = #{title},
+            </if>
+            <if test="description != null" >
+                description = #{description},
+            </if>
+            <if test="banner_size != null" >
+                banner_size = #{banner_size},
+            </if>
+            <if test="banner_url != null" >
+                banner_url = #{banner_url},
+            </if>
+            <if test="platform_type != null" >
+                platform_type = #{platform_type},
+            </if>
+            <if test="impression_tracking_url != null" >
+                impression_tracking_url = #{impression_tracking_url},
+            </if>
+            <if test="redirect_url != null" >
+                redirect_url = #{redirect_url},
+            </if>
+
+            edit_date = CURRENT_TIMESTAMP,
+        </trim>
+        WHERE
+        aid = #{aid}
+    </update>
+
+
+</mapper>

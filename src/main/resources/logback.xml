@@ -2,17 +2,9 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout>
             <pattern>[%date] %highlight([%level]) [%logger{10} %file:%line] %msg%n</pattern>
-<!--            <pattern>%d{yyyyMMdd HH:mm:ss.SSS} %-5level %logger{36} - %msg %n</pattern>-->
-            <!--<pattern>%d{yyyyMMdd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n</pattern>-->
         </layout>
     </appender>
-    <logger name="jdbc" level="OFF"/>
-    <logger name="jdbc.sqlonly" level="OFF"/>
-    <logger name="jdbc.sqltiming" level="OFF"/>
-    <logger name="jdbc.audit" level="OFF"/>
-    <logger name="jdbc.resultset" level="OFF"/>
-    <logger name="jdbc.resultsettable" level="OFF"/>
-    <logger name="jdbc.connection" level="OFF"/>
+
 
     <root level="info">
         <appender-ref ref="STDOUT" />

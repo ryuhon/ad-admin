@@ -18,10 +18,16 @@ import java.util.List;
 @Service
 public class AuthService implements UserDetailsService {
 
-    @Autowired
-    MemberMapper memberMapper;
+
+
+
+
 
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final  MemberMapper memberMapper;
+    public AuthService(MemberMapper memberMapper) {
+        this.memberMapper = memberMapper;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String memberID) throws UsernameNotFoundException {

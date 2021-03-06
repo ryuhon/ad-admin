@@ -1,7 +1,7 @@
 package kr.devbox.adadmin.config;
 
 import org.springframework.http.HttpHeaders;
-import kr.devbox.adadmin.dto.RestResponseDTO;
+import kr.devbox.adadmin.dto.RestDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,11 +12,11 @@ import org.springframework.web.context.request.WebRequest;
 public class RestExceptionHandler {
 
     @ExceptionHandler({Exception.class})
-    protected ResponseEntity<RestResponseDTO> handleAnyException( Exception ex,  WebRequest request) {
+    protected ResponseEntity<RestDTO> handleAnyException(Exception ex, WebRequest request) {
         ex.printStackTrace();
-        RestResponseDTO result = new RestResponseDTO(false, null, ex.getMessage());
+        RestDTO result = new RestDTO(false, null, ex.getMessage());
 
-        return new ResponseEntity<RestResponseDTO>(
+        return new ResponseEntity<RestDTO>(
                 result, new HttpHeaders(), HttpStatus.EXPECTATION_FAILED
         );
     }
