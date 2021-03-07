@@ -1,12 +1,17 @@
 <configuration>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout>
-            <pattern>[%date] %highlight([%level]) [%logger{10} %file:%line] %msg%n</pattern>
+<!--            <pattern>[%date] %highlight([%level]) [%logger{10} %file:%line] %msg%n</pattern>-->
+<!--            <Pattern>%d{HH:mm:ss.SSS} %highlight(%-5level) [%thread] %cyan(%logger{36}) - %highlight(%msg%n)</Pattern>-->
+<!--            <pattern>%d{HH:mm:ss.SSS} %highlight(%-5level) [%10thread] %cyan(%-40logger{36}) - %msg%n</pattern>-->
+<!--            <pattern>%d{HH:mm:ss.SSS} %highlight(%-5level) [%10thread] %cyan(%-40logger{36}) - %msg%n</pattern>-->
+            <Pattern>%d{HH:mm:ss.SSS} %highlight([%-5level]) [%10thread] %cyan([%-40logger{36}]) - %m%n</Pattern>
+
         </layout>
     </appender>
 
 
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="STDOUT" />
     </root>
 

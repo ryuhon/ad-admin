@@ -9,7 +9,7 @@ import java.util.Date;
 public class Ad {
 
     @Builder
-    public Ad(int aid, int mid, String title, String description, int banner_size,
+    public Ad(int aid, int mid, String title, String description, int banner_size, String banner_url,
               int platform_type, String impression_tracking_url, String redirect_url) {
 
         this.aid = aid;
@@ -17,6 +17,7 @@ public class Ad {
         this.title = title;
         this.description = description;
         this.banner_size = banner_size;
+        this.banner_url = banner_url;
         this.platform_type = platform_type;
         this.impression_tracking_url = impression_tracking_url;
         this.redirect_url = redirect_url;
@@ -27,6 +28,7 @@ public class Ad {
     private String  title;
     private String  description;
     private int     banner_size;
+    private String  banner_url;
     private int     platform_type;
     private String  impression_tracking_url;
     private String  redirect_url;

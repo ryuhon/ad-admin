@@ -7,6 +7,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import kr.devbox.adadmin.dto.SessionDTO;
 import kr.devbox.adadmin.service.AuthService;
+import lombok.extern.java.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-
+@Log
 public class TokenAuthenticationFilter extends GenericFilterBean {
     private AuthService authService;
     private static final Long DAY = 3600L * 24;
@@ -43,6 +44,8 @@ public class TokenAuthenticationFilter extends GenericFilterBean {
         if (accessBearerToken != null ) {
             accessToken = accessBearerToken.substring(7, accessBearerToken.length());
         }
+
+        log.info("accessToken : " + accessToken);
         if (!accessToken.equals("")) {
             tokenExist = true;
         }
@@ -52,13 +55,20 @@ public class TokenAuthenticationFilter extends GenericFilterBean {
 
 
                 JWTVerifier verifier = JWT.require(Algorithm.HMAC256("rhkdrhtptus20210307"))
-                        .withIssuer("ad-admin.devbox.kr")
-                        .acceptExpiresAt(DAY * 1) // 만료일 -1일
+                        .withIssuer("adadmin")
+                        .acceptExpiresAt(DAY *4) // 만료일 -1일
                         .build();
 
                 DecodedJWT jwt = verifier.verify(accessToken);
-                String memberID = jwt.getClaim("memberID").asString();
 
+                log.info ("mid : " + jwt.getClaim("mid").asString());
+                log.info ("memberID : " + jwt.getClaim("member_id").asString());
+                log.info ("name : " + jwt.getClaim("name").asString());
+                log.info ("session : " + jwt.getClaim("session").asString());
+
+
+                String memberID = jwt.getClaim("member_id").asString();
+                log.info("memberID : " + memberID);
                 ServletContext servletContext = request.getServletContext();
                 WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
                 authService = webApplicationContext.getBean(AuthService.class);

@@ -15,7 +15,6 @@ public class RestExceptionHandler {
     protected ResponseEntity<RestDTO> handleAnyException(Exception ex, WebRequest request) {
         ex.printStackTrace();
         RestDTO result = new RestDTO(false, null, ex.getMessage());
-
         return new ResponseEntity<RestDTO>(
                 result, new HttpHeaders(), HttpStatus.EXPECTATION_FAILED
         );

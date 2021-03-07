@@ -16,15 +16,17 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
-    implementation 'com.auth0:java-jwt:3.14.0'
+    implementation 'com.auth0:java-jwt:3.3.0'
     compileOnly 'org.projectlombok:lombok:1.18.16'
     annotationProcessor 'org.projectlombok:lombok:1.18.16'
     implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.6.1'
     implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.6.1'
     implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.2'
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.9'
-
-
+    implementation 'io.minio:minio:4.0.0'
+    implementation group: 'net.coobird', name: 'thumbnailator', version: '0.4.8'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
+    implementation 'commons-io:commons-io:2.6'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

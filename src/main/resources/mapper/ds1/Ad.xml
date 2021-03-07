@@ -45,7 +45,7 @@
     </select>
     <select id="adCount" parameterType="ListParam" resultType="Integer">
         SELECT count(aid) FROM ad
-        ORDER BY EID DESC
+        ORDER BY aid DESC
     </select>
     <insert id="adCreate" parameterType="Ad" useGeneratedKeys="true"  keyProperty="aid">
         INSERT INTO

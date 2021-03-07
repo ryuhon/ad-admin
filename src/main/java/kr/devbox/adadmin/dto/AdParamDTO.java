@@ -12,13 +12,11 @@ public class AdParamDTO {
     private String  title;
     private String  description;
     private int     bannerSize;
+    private String  bannerUrl;
     private int     platformType;
     private String  impressionTrackingUrl;
     private String  redirectUrl;
     private Date    regDate;
 
-    public Ad toEntity() {
-        return new Ad(aid,mid,title,description,bannerSize,platformType,impressionTrackingUrl,redirectUrl);
 
-    }
 }

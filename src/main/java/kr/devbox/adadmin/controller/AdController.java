@@ -27,8 +27,8 @@ public class AdController {
     @ApiOperation(value = "광고 리스트", notes = "광고 리스트")
     @RequestMapping(value="/ads", method= RequestMethod.GET)
     @ResponseBody
-    public Object adList(ListParamDTO param) {
-
+    public Object adList( ListParamDTO param) {
+        log.debug("param : " + param.toString());
         List<AdParamDTO> adList =  adService.getList(param);
 
         int total = adService.getCount(param);

@@ -12,7 +12,7 @@ public class FilterConfig {
 	public FilterRegistrationBean getFilterRegistrationBean()
 	{
 		FilterRegistrationBean registrationBean = new FilterRegistrationBean(new ApiFilter());
-		registrationBean.addUrlPatterns("/api/*");
+		registrationBean.addUrlPatterns("/api/**");
 		return registrationBean;
 	}
 	

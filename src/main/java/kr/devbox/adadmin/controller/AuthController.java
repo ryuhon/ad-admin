@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
@@ -48,7 +49,7 @@ public class AuthController {
     public Object login(
             @RequestBody AuthParamDTO authParamDTO,
             HttpSession httpSession
-    )   {
+    )  throws UnsupportedEncodingException {
 
 
 
@@ -67,13 +68,20 @@ public class AuthController {
         httpSession.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,SecurityContextHolder.getContext());
 
         SessionDTO sessionDTO  = authService.getSessionByMemberID(authParamDTO.getMemberID());
+
+
+        log.info("mid : " + sessionDTO.getMid());
+        log.info("member id : " + sessionDTO.getMemberID());
+        log.info("name : " + sessionDTO.getName());
+
+
          String tokenString  =  JWT.create()
-                .withIssuer("ad-admin.devbox.kr")
+                .withIssuer("adadmin")
                 .withClaim("mid",sessionDTO.getMid())
-                .withClaim("memberID",sessionDTO.getMid())
+                .withClaim("member_id",sessionDTO.getMemberID())
                 .withClaim("name",sessionDTO.getName())
                 .withClaim("session",httpSession.getId())
-                .withExpiresAt(Date.from(LocalDateTime.now().toInstant(ZoneOffset.ofHours(1)))) // 만료일
+                .withExpiresAt(Date.from(LocalDateTime.now().toInstant(ZoneOffset.ofHours(9))))
                 .sign(Algorithm.HMAC256("rhkdrhtptus20210307"));
 
 

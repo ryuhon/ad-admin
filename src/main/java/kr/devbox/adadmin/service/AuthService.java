@@ -3,6 +3,7 @@ package kr.devbox.adadmin.service;
 import kr.devbox.adadmin.dto.SessionDTO;
 import kr.devbox.adadmin.entity.Member;
 import kr.devbox.adadmin.mapper.MemberMapper;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.List;
 
+@Log
 @Service
 public class AuthService implements UserDetailsService {
 
@@ -48,6 +50,8 @@ public class AuthService implements UserDetailsService {
 
     public SessionDTO getSessionByMemberID(String memberID) throws UsernameNotFoundException {
         Member member = memberMapper.memberGetOne(memberID);
+
+
         SessionDTO session = new SessionDTO();
         session.setMid(member.getMid());
         session.setMemberID(member.getMember_id());
