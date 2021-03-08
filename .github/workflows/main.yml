@@ -3,7 +3,7 @@ on: push
 
 jobs:
   build:
-    name: stockngo-api action
+    name: ad-admin action
     runs-on: ubuntu-latest
     steps:
       - name: checkout source code
