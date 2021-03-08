@@ -4,6 +4,7 @@ import kr.devbox.adadmin.dto.ListParamDTO;
 import kr.devbox.adadmin.entity.Ad;
 import kr.devbox.adadmin.entity.ListParam;
 import kr.devbox.adadmin.entity.Member;
+import kr.devbox.adadmin.entity.Report;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,4 +21,6 @@ public interface AdMapper {
     public Boolean                      adCreate(Ad ad);
     public Boolean                      adDelete(@Param("aid") String aid);
     public Boolean                      adUpdate(Ad ad);
+    public List<Report>                       adReport();
+
 }

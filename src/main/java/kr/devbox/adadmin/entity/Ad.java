@@ -10,7 +10,7 @@ public class Ad {
 
     @Builder
     public Ad(int aid, int mid, String title, String description, int banner_size, String banner_url,
-              int platform_type, String impression_tracking_url, String redirect_url) {
+              String platform_type, String impression_tracking_url, String redirect_url) {
 
         this.aid = aid;
         this.mid = mid;
@@ -29,7 +29,7 @@ public class Ad {
     private String  description;
     private int     banner_size;
     private String  banner_url;
-    private int     platform_type;
+    private String     platform_type;
     private String  impression_tracking_url;
     private String  redirect_url;
     private Date    reg_date;

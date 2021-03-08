@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.devbox.adadmin.mapper.AdMapper">
-
+    <select id="adReport" resultType="Report" >
+        SELECT
+            AAA.aid,
+            AAA.title,
+            AAA.request,
+            AAA.impression,
+            COUNT(D.reg_date) AS click
+        FROM
+            (
+                SELECT
+                    AA.aid,
+                    AA.title,
+                    AA.request,
+                    COUNT(C.reg_date) AS impression
+                FROM
+                    (
+                        SELECT
+                            A.aid,
+                            A.title,
+                            COUNT(B.reg_date) AS request
+                        FROM
+                            ad A
+                            LEFT OUTER JOIN request B ON A.aid = B.aid
+                        GROUP BY
+                            A.aid
+                    ) AA
+                    LEFT OUTER JOIN impression C ON AA.aid = C.aid
+                GROUP BY
+                    AA.aid
+            ) AAA
+            LEFT OUTER JOIN click D ON AAA.aid = D.aid
+        GROUP BY
+            AAA.aid
+        ORDER BY
+            AAA.aid
+    </select>
     <select id="adGetOne" parameterType="String" resultType="Ad">
         SELECT
           aid,

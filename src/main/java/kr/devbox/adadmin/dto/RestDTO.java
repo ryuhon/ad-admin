@@ -6,16 +6,16 @@ import lombok.Getter;
 public class RestDTO {
     private boolean success;
     private Object data;
-    private String message;
+    private Object message;
     private Integer total;
 
-    public RestDTO(boolean success, Object data, String message) {
+    public RestDTO(boolean success, Object data, Object message) {
         this.success = success;
         this.data = data;
         this.message = message;
 
     }
-    public RestDTO(Object data, String message) {
+    public RestDTO(Object data, Object message) {
         this.success = true;
         this.data = data;
         this.message = message;

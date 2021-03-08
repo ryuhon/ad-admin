@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import kr.devbox.adadmin.dto.AuthParamDTO;
 import kr.devbox.adadmin.dto.AuthResultDTO;
+import kr.devbox.adadmin.dto.RestDTO;
 import kr.devbox.adadmin.dto.SessionDTO;
 import kr.devbox.adadmin.mapper.MemberMapper;
 import kr.devbox.adadmin.service.AuthService;
@@ -90,7 +91,7 @@ public class AuthController {
         authResultDTO.setName(sessionDTO.getName());
         authResultDTO.setToken(tokenString);
 
-        return authResultDTO;
+        return new RestDTO(authResultDTO,"");
     }
     @ApiOperation(value = "로그아웃", notes = "로그아웃")
     @RequestMapping(value="/logout", method=RequestMethod.GET)
