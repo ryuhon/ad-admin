@@ -31,7 +31,7 @@ public class AdController {
     @RequestMapping(value="/ads", method= RequestMethod.GET)
     @ResponseBody
     public Object adList( ListParamDTO param) {
-        log.debug("param : " + param.toString());
+//        log.debug("param : " + param.toString());
         List<AdParamDTO> adList =  adService.getList(param);
 
         int total = adService.getCount(param);
